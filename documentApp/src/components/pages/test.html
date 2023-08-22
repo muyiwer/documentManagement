@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>API Test</title>
+</head>
+
+<body>
+
+    <h1>Test API CORS</h1>
+    <p>Click Below</p>
+    <button id="myButton">CLick to Test</button>
+    <script type="text/javascript">
+        var button = document.getElementById("myButton");
+        function handleButtonClick() {
+            fetch("http://80.88.8.239:5042/api/v1/users/sign-in", {
+
+                // Adding method type
+                method: "POST",
+
+                // Adding body or contents to send
+                body: JSON.stringify({
+                    username: "foo",
+                    password: "bar",
+                }),
+
+                // Adding headers to the request
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                }
+            })
+
+                // Converting to JSON
+                .then(response => alert(response.json()))
+
+                // Displaying results to console
+                .then(json => alert(console.log(json)))
+                .catch(json => alert(console.log(json)))
+        }
+        button.onclick = handleButtonClick;
+
+    </script>
+</body>
+
+</html>

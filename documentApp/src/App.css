@@ -1,0 +1,279 @@
+@media only screen and (min-width: 700px) {
+  #root {
+    margin: -8px !important;
+    padding: 0 !important;
+    width: 100vw;
+  }
+  .auth {
+    top: 20%;
+    left: 10%;
+    position: absolute;
+    width: 70%;
+    padding: 20px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-rows: 50px 1fr 20px;
+  }
+
+  header {
+    background-color: rgb(22, 18, 18);
+    display: flex;
+    justify-content: space-between;
+    width: 100vw;
+  }
+
+  .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 20px;
+  }
+
+  .logo-text {
+    color: rgb(216, 97, 0);
+    font-size: 20px;
+    font-weight: bold;
+    font-style: italic;
+  }
+
+  .auth {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-right: 20px;
+  }
+
+  .button {
+    background-color: rgb(216, 97, 0);
+    color: white;
+  }
+
+  .button:hover {
+    background-color: rgb(216, 97, 0) !important;
+    color: white !important;
+    border-color: white !important;
+  }
+
+  .title {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 20px;
+    margin-left: 10%;
+  }
+
+  main {
+    display: grid;
+    grid-template-rows: 70px auto auto;
+  }
+
+  .upload {
+    padding: 20px;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    height: 300px;
+  }
+
+  .upload-icon {
+    color: rgb(216, 97, 0) !important;
+  }
+
+  .ant-upload-text {
+    color: white !important;
+  }
+
+  .ant-upload-hint {
+    color: white !important;
+  }
+
+  article {
+    display: grid;
+    grid-template-columns: 35% 64%;
+    gap: 10px;
+    margin-top: 20px;
+    margin-left: 11%;
+    margin-right: 11%;
+  }
+
+  .options {
+    border: 0.5px solid rgb(20, 20, 20);
+    border-radius: 10px;
+    display: grid;
+    grid-template-rows: 50px auto;
+    height: 300px;
+  }
+
+  .option-header {
+    background-color: rgb(27, 26, 26);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    display: flex;
+    padding: 10px;
+  }
+
+  .option-properties {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .property {
+    display: flex;
+    gap: 10px;
+  }
+
+  .property-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .ant-checkbox-checked:after {
+    border: 2px solid rgb(216, 97, 0) !important;
+  }
+
+  .ant-checkbox-checked .ant-checkbox-inner {
+    background-color: rgb(216, 97, 0);
+    border-color: rgb(216, 97, 0);
+  }
+
+  .ant-input {
+    color: white;
+    background-color: rgb(43, 41, 41);
+    border-color: rgb(216, 97, 0);
+    width: 70%;
+  }
+
+  .select {
+    color: white;
+    background-color: rgb(43, 41, 41);
+    border-color: rgb(216, 97, 0);
+    width: 70%;
+  }
+
+  .ant-select-selector {
+    background-color: rgb(43, 41, 41) !important;
+    border-color: rgb(216, 97, 0) !important;
+    color: white !important;
+  }
+
+  .ant-select-arrow {
+    color: white !important;
+  }
+
+  .ant-select-single.ant-select-open .ant-select-selection-item {
+    color: white !important;
+  }
+
+  .image-box {
+    border: 0.5px solid rgb(20, 20, 20);
+    margin-left: 28%;
+    border-radius: 10px;
+    display: grid;
+    grid-template-rows: 50px 1fr;
+    height: auto;
+    margin-bottom: 20px;
+  }
+
+  .image-box-header {
+    background-color: rgb(27, 26, 26);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    display: flex;
+    padding: 10px;
+    justify-content: space-between;
+  }
+
+  .image-box-main {
+    margin: 20px;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .image {
+    border-radius: 10px;
+  }
+
+  .image-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+  }
+
+  label {
+    font-weight: bolder;
+    font-size: 17px;
+  }
+}
+
+.ant-tabs {
+  color: white !important;
+}
+
+.ant-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: orange !important;
+}
+
+.ant-switch.ant-switch-checked {
+  background: #7847e1;
+}
+.auth {
+  top: 25%;
+  left: 40%;
+  position: absolute;
+  width: 20%;
+  padding: 20px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.card {
+  border-radius: 5px;
+  background-color: #262932;
+}
+
+.input {
+  padding: 12px 20px;
+  display: inline-block;
+  border: 1px solid #262932;
+  box-sizing: border-box;
+  background-color: #353945;
+  border-radius: 10px;
+  color: white;
+}
+
+.btn {
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  border-radius: 10px;
+  font-size: 14px;
+  height: 32px;
+  background-position: right center;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-gradient {
+  background-image: linear-gradient(to right, #483beb 50%, #7847e1 30%, #dd568d 100%) !important;
+}
