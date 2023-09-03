@@ -1,4 +1,4 @@
-import { Button, Col, Form, Input, Modal, Spin, Table, Tag } from "antd";
+import { Button, Card, Col, Form, Input, Modal, Spin, Table, Tag } from "antd";
 import { ColumnsType } from "antd/es/table";
 import { useMemo, useState, useCallback } from "react";
 import { useApi } from "../../hooks/useApi";
@@ -89,7 +89,7 @@ export const ApprovalPage = () => {
       render: (record: any) => (
         <Button
           onClick={() => setDetails(record)}
-          className="bg-[#7847e1] text-white"
+          className="bg-[#b90d0d] text-white"
         >
           View File
         </Button>
@@ -195,12 +195,14 @@ export const ApprovalPage = () => {
           className={`flex flex-col gap-4 ml-[10%] pl-[20px] pr-[10%] mt-[100px] max-md:ml-[0%] max-md:mt-[30px]`}
         >
           <Spin spinning={loading}>
+          <Card className="box-shadow">
             <Table
               columns={columns}
               className=""
               dataSource={dataSource?.filter((x) => x.status === "PENDING")}
               scroll={{ x: 200 }}
             />
+            </Card>
           </Spin>
         </div>
       </main>

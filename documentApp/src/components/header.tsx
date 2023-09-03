@@ -15,12 +15,17 @@ export const AppHeader = () => {
   return (
     <header className="flex flex-row justify-between items-center w-[100.5vw]">
       <div className="logo">
-        <h1 className="font-extrabold max-md:hidden">
+        {/* <h1 className="font-extrabold max-md:hidden">
           <span className="text-[#7847e1] text-xl">Document</span>
           <span className="text-[#dd568d] text-xl">App</span>
-        </h1>
+        </h1> */}
+        <img
+          className="max-md:hidden w-[100px]"
+          src="https://unilag.edu.ng/wp-content/uploads/Untitled-7-5.png"
+          alt=""
+        />
       </div>{" "}
-      <nav className="flex gap-4">
+      <nav className="flex gap-4 text-white">
         {/* <div
           className={`${
             window.location.href.includes("home")
@@ -35,7 +40,7 @@ export const AppHeader = () => {
           <div
             className={`${
               window.location.href.includes("documents")
-                ? "text-[#dd568d] font-extrabold"
+                ? "text-[#3c9fa1] font-extrabold"
                 : ""
             } cursor-pointer`}
             onClick={() => navigate("/documents")}
@@ -50,7 +55,7 @@ export const AppHeader = () => {
           <div
             className={`${
               window.location.href.includes("users")
-                ? "text-[#dd568d] font-extrabold"
+                ? "text-[#3c9fa1] font-extrabold"
                 : ""
             } cursor-pointer`}
             onClick={() => navigate("/users")}
@@ -65,7 +70,7 @@ export const AppHeader = () => {
           <div
             className={`${
               window.location.href.includes("roles")
-                ? "text-[#dd568d] font-extrabold"
+                ? "text-[#3c9fa1] font-extrabold"
                 : ""
             } cursor-pointer`}
             onClick={() => navigate("/roles")}
@@ -80,7 +85,7 @@ export const AppHeader = () => {
           <div
             className={`${
               window.location.href.includes("approval")
-                ? "text-[#dd568d] font-extrabold"
+                ? "text-[#3c9fa1] font-extrabold"
                 : ""
             } cursor-pointer`}
             onClick={() => navigate("/approval")}
@@ -94,7 +99,8 @@ export const AppHeader = () => {
       <div className="pt-2 pr-5 ml-2">
         <Button className="button" onClick={logout}>
           <div className="flex gap-1 items-center">
-            <LogoutOutlined /> <div className="max-md:hidden">LogOut</div>
+            <LogoutOutlined className="text-white" />{" "}
+            <div className="max-md:hidden">LogOut</div>
           </div>
         </Button>
       </div>

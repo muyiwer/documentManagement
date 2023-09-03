@@ -4,19 +4,26 @@ import { useApi } from "../../hooks/useApi";
 export const Auth = () => {
   const { postData, setRequest, payload, mutation } = useApi("login");
   useEffect(() => {
-    localStorage.clear()
-  }, [])
-  
+    localStorage.clear();
+  }, []);
+
   return (
     <section className="auth card">
       <div className="flex justify-center">
-        <h1 className="font-extrabold">
-          <span className="text-[#7847e1]">Document</span>{" "}
-          <span className="text-[#dd568d]">App</span>
-        </h1>
+        <div className="flex flex-col">
+          <img
+            src="https://unilag.edu.ng/wp-content/uploads/Untitled-7-5.png"
+            alt=""
+          />
+          <div className="flex mt-1 ml-2">
+            {" "}
+            <span className="text-[rgb(207,46,46)] font-extrabold text-[24px]">Document</span>{" "}
+            <span className="text-red-800 font-extrabold text-[24px]">App</span>
+          </div>
+        </div>
       </div>
       <form
-        className="flex flex-col gap-3"
+        className="flex flex-col gap-3 w-[100%]"
         onSubmit={(e) =>
           postData(e, "users/sign-in", {
             username: payload.username,
@@ -43,7 +50,7 @@ export const Auth = () => {
         <button
           disabled={mutation.isLoading}
           type="submit"
-          className="btn btn-gradient m-10"
+          className="btn btn-gradient m-10 "
         >
           {mutation.isLoading ? "Loading..." : "Login"}
         </button>

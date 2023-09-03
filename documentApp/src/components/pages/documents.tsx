@@ -10,6 +10,7 @@ import {
   Tag,
   UploadProps,
   Upload,
+  Card,
 } from "antd";
 import { ColumnsType } from "antd/es/table";
 import { useMemo, useState, useCallback, useContext } from "react";
@@ -125,7 +126,7 @@ export const DocumentsPage = () => {
       render: (record: any) => (
         <Button
           onClick={() => setDetails(record)}
-          className="bg-[#7847e1] text-white"
+          className="bg-[#b90d0d] text-white"
         >
           View File
         </Button>
@@ -321,12 +322,14 @@ export const DocumentsPage = () => {
           )}
 
           <Spin spinning={loading}>
+            <Card className="box-shadow">
             <Table
               columns={columns}
               className=""
               dataSource={dataSource}
               scroll={{ x: 200 }}
             />
+            </Card>
           </Spin>
         </div>
       </main>

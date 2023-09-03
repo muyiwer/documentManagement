@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import {
   Button,
+  Card,
   Col,
   Form,
   Input,
@@ -168,13 +169,13 @@ export const Roles = () => {
         <div className="flex gap-1">
           <Button
             onClick={() => setDetails(record)}
-            className="bg-[#7847e1] text-white"
+            className="bg-[#b90d0d] text-white"
           >
             Edit{" "}
           </Button>
           <Button
             onClick={() => setDeleteModal(record)}
-            className="bg-[#7847e1] text-white"
+            className="bg-[#b90d0d] text-white"
           >
             Delete{" "}
           </Button>
@@ -308,12 +309,14 @@ export const Roles = () => {
           )}
 
           <Spin spinning={loading}>
+          <Card className="box-shadow">
             <Table
               columns={columns}
               className=""
               dataSource={dataSource}
               scroll={{ x: 200 }}
             />
+            </Card>
           </Spin>
         </div>
       </main>

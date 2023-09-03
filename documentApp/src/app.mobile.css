@@ -34,7 +34,10 @@
     margin-right: 20px;
     width: 100% !important;
     left: 0% !important;
-    top: 5% !important
+    top: 15% !important
+  }
+  .card{
+    background-color: white !important;
   }
   .button {
     background-color: rgb(216, 97, 0);

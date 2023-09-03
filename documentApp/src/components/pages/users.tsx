@@ -1,4 +1,4 @@
-import { Button, Col, Form, Input, Modal, Row, Spin, Table, Tag } from "antd";
+import { Button, Card, Col, Form, Input, Modal, Row, Spin, Table, Tag } from "antd";
 import { ColumnsType } from "antd/es/table";
 import { useCallback, useContext, useMemo, useState } from "react";
 import { CompressContext } from "../../App";
@@ -96,7 +96,7 @@ export const UsersPage = () => {
         <div className="flex gap-1">
           <Button
             onClick={() => setDetails(record)}
-            className="bg-[#7847e1] text-white"
+            className="bg-[#b90d0d] text-white"
           >
             Edit User{" "}
           </Button>
@@ -286,12 +286,14 @@ export const UsersPage = () => {
             ""
           )}
           <Spin spinning={loading}>
+          <Card className="box-shadow">
             <Table
               columns={columns}
               className="w-[105vw]"
               dataSource={dataSource}
               scroll={{ x: 200 }}
             />
+            </Card>
           </Spin>
         </div>
       </main>

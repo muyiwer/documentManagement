@@ -8,8 +8,8 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: white;
+  background-color: white;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -25,9 +25,9 @@ select{
 }
 .ant-pagination .ant-pagination-item-active {
   font-weight: 600;
-  background-color: #7847e1 !important;
+  background-color: #b90d0d !important;
   border-color: pink;
 }
 .anticon{
-  color: #7847e1;
+  color: white;
 }
