@@ -14,7 +14,7 @@ export const useApi = (page: "login" | "users" | "documents" | "roles") => {
   const [dataSource, setDataResponse] = useState([] as any);
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const domain = "https://doc-mgt.onrender.com/api/v1/";
+  const domain = "http://80.88.8.239:5042/api/v1/";
   //const queryClient = useQueryClient();
   //http://80.88.8.239:5042/api/v1/
 
