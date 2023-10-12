@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import {
   useMutation,
   //useQueryClient,
@@ -183,12 +183,6 @@ export const useApi = (page: "login" | "users" | "documents" | "roles") => {
       setPayload({ ...payload, [key]: value });
     }
   };
-  // useEffect(() => {
-  //   fetch("https://98f1-197-242-98-47.ngrok-free.app/api/v1/users/hello")
-  
-   
-  // }, [])
-  
 
   return {
     postData,
