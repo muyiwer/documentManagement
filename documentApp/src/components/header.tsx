@@ -131,7 +131,7 @@ export const AppHeader = () => {
           </Button>
         </div>
       </header>
-      <div className="text-black mt-4 ml-8 flex flex-col gap-3">
+      <div className="text-black mt-4 ml-8 flex flex-col gap-3 -mb-[100px]">
         <div className="flex gap-2">
           <span className="font-bold text-[24px] text-red-800">Welcome </span>{" "}
           <span className="font-bold text-[24px] text-Black">
