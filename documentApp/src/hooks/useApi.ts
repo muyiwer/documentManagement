@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
   useMutation,
   //useQueryClient,
@@ -14,7 +14,7 @@ export const useApi = (page: "login" | "users" | "documents" | "roles") => {
   const [dataSource, setDataResponse] = useState([] as any);
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const domain = "https://c858-197-242-98-47.ngrok.io/api/v1/";
+  const domain = "https://dms-app-z844.onrender.com/api/v1/";
   //const queryClient = useQueryClient();
   //http://80.88.8.239:5042/api/v1/
 
@@ -183,6 +183,12 @@ export const useApi = (page: "login" | "users" | "documents" | "roles") => {
       setPayload({ ...payload, [key]: value });
     }
   };
+  // useEffect(() => {
+  //   fetch("https://98f1-197-242-98-47.ngrok-free.app/api/v1/users/hello")
+  
+   
+  // }, [])
+  
 
   return {
     postData,
