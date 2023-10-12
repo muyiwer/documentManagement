@@ -1,4 +1,15 @@
-import { Button, Card, Col, Form, Input, Modal, Row, Spin, Table, Tag } from "antd";
+import {
+  Button,
+  Card,
+  Col,
+  Form,
+  Input,
+  Modal,
+  Row,
+  Spin,
+  Table,
+  Tag,
+} from "antd";
 import { ColumnsType } from "antd/es/table";
 import { useCallback, useContext, useMemo, useState } from "react";
 import { CompressContext } from "../../App";
@@ -13,6 +24,7 @@ export const UsersPage = () => {
     loading,
     dataSource,
     response,
+    response2,
     postOptionData,
     postPayload,
     showModal,
@@ -40,11 +52,13 @@ export const UsersPage = () => {
         email: record.email,
         roleId: record?.role?.id,
         roleName: record?.role?.name,
+        departmentName: record?.departments?.name,
+        departmentId: record?.role?.id,
       });
     },
     [setID, setPayload, setShowModal]
   );
-
+console.log(payload);
   const columns: ColumnsType<any> = [
     {
       title: "Email",
@@ -65,6 +79,13 @@ export const UsersPage = () => {
       dataIndex: "role",
       key: "role",
       render: (role) => <a>{role?.name}</a>,
+    },
+    {
+      title: "Department",
+      width: "150px",
+      dataIndex: "department",
+      key: "dept",
+      render: (dept) => <a>{dept?.name}</a>,
     },
     {
       title: "Permissions",
@@ -127,6 +148,7 @@ export const UsersPage = () => {
               password: payload.password,
               roleId: payload.roleId,
               username: payload.username,
+              departmentId: payload.departmentId
             })
           }
           fields={[
@@ -150,6 +172,14 @@ export const UsersPage = () => {
               name: "roleName",
               value: payload?.roleName,
             },
+            {
+              name: "departmentId",
+              value: payload?.departmentId
+            },
+            {
+              name: "departmentName",
+              value: payload?.departmentName
+            }
           ]}
         >
           <Row>
@@ -188,9 +218,9 @@ export const UsersPage = () => {
                 />
               </Form.Item>
             </Col>
-            <Col md={12}>
-              {" "}
-              {isNew ? (
+            {isNew ? (
+              <Col md={12}>
+                {" "}
                 <Form.Item
                   name="password"
                   label="Password"
@@ -202,10 +232,10 @@ export const UsersPage = () => {
                     className="bg-white text-black"
                   />
                 </Form.Item>
-              ) : (
-                ""
-              )}
-            </Col>
+              </Col>
+            ) : (
+              ""
+            )}
             <Col md={12}>
               {" "}
               <Form.Item
@@ -253,9 +283,58 @@ export const UsersPage = () => {
                 </fieldset>
               </Form.Item>
             </Col>
+            <Col md={12}>
+              {" "}
+              <Form.Item
+                name="departmentId"
+                label="Department"
+                rules={[{ required: true, message: "Please select user department" }]}
+              >
+                <fieldset>
+                  <div className="relative border text-gray-800 bg-white shadow-lg w-[70%] border-orange-500">
+                    <select
+                      onClick={(e) => {
+                        postOptionData(e, "dept", { page: 0, size: 50 });
+                      }}
+                      onChange={(e) => {
+                        e.preventDefault();
+                        setRequest("departmentId", parseInt(e.currentTarget.value));
+                      }}
+                      className="appearance-none w-full py-1 px-2 bg-white"
+                      name="departmentId"
+                      id="frm-whatever"
+                      placeholder={"Please choose a department"}
+                    >
+                      <option disabled selected hidden value={"0"}>
+                        {isNew ? "Please choose a department" : payload?.departmentName}
+                      </option>
+                      <option disabled></option>
+                      {Array.isArray(response2?.departments)
+                        ? response2?.departments.map((x) => (
+                            <option key={x.id} value={x.id}>
+                              {x.name}
+                            </option>
+                          ))
+                        : ""}
+                    </select>
+                    <div className="pointer-events-none absolute right-0 top-0 bottom-0 flex items-center px-2 text-gray-700 border-l">
+                      <svg
+                        className="h-4 w-4"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                      >
+                        <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                      </svg>
+                    </div>
+                  </div>
+                </fieldset>
+              </Form.Item>
+            </Col>
+
             <Col md={24}>
               {" "}
               <Button
+                loading={loading}
                 htmlType="submit"
                 className="float-right mr-[15%] btn btn-gradient"
               >
@@ -286,13 +365,13 @@ export const UsersPage = () => {
             ""
           )}
           <Spin spinning={loading}>
-          <Card className="box-shadow">
-            <Table
-              columns={columns}
-              className="w-[105vw]"
-              dataSource={dataSource}
-              scroll={{ x: 200 }}
-            />
+            <Card className="box-shadow">
+              <Table
+                columns={columns}
+                className="w-[105vw]"
+                dataSource={dataSource}
+                scroll={{ x: 200 }}
+              />
             </Card>
           </Spin>
         </div>

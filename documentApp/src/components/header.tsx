@@ -65,6 +65,20 @@ export const AppHeader = () => {
         ) : (
           ""
         )}
+        {state.permissions?.includes("VIEW_DEPARTMENT") ? (
+          <div
+            className={`${
+              window.location.href.includes("department")
+                ? "text-[#3c9fa1] font-extrabold"
+                : ""
+            } cursor-pointer`}
+            onClick={() => navigate("/department")}
+          >
+            Department
+          </div>
+        ) : (
+          ""
+        )}
 
         {state.permissions?.includes("VIEW_ROLE") ? (
           <div

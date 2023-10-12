@@ -299,6 +299,7 @@ export const Roles = () => {
               onClick={() => {
                 setShowModal(true);
                 clearData();
+                setActionType("create")
               }}
               className="w-[15%] float-right btn btn-gradient"
             >

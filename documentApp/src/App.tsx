@@ -8,6 +8,7 @@ import { UsersPage } from "./components/pages/users";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Roles } from "./components/pages/roles";
 import { ApprovalPage } from "./components/pages/approval";
+import { Department } from "./components/pages/department";
 
 interface State {
   originalImage: any;
@@ -106,6 +107,11 @@ function App() {
             )}
             {permissions?.includes("VIEW_USER") ? (
               <Route path="/users" element={<UsersPage />} />
+            ) : (
+              ""
+            )}
+             {permissions?.includes("VIEW_DEPARTMENT") ? (
+              <Route path="/department" element={<Department />} />
             ) : (
               ""
             )}

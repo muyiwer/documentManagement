@@ -74,8 +74,8 @@ export const ApprovalPage = () => {
             status.toLowerCase() === "pending"
               ? "orange"
               : status.toLowerCase() === "approved"
-              ? "green"
-              : "red"
+                ? "green"
+                : "red"
           }
           key={status}
         >
@@ -132,7 +132,7 @@ export const ApprovalPage = () => {
               </p>
             </object>
           ) : (
-            <img className=" rounded-lg" alt="" src={payload.url} />
+            <img className=" rounded-lg h-[300px]" alt="" src={payload.url} />
           )}
           <Form
             onFinish={() =>
@@ -155,8 +155,7 @@ export const ApprovalPage = () => {
           >
             <Col md={24}>
               <Form.Item
-                label="Reason for Approval"
-                rules={[{ required: true, message: "Please enter file name" }]}
+                label="Reason for Rejection"
                 name="reason"
               >
                 <Input.TextArea
@@ -167,6 +166,7 @@ export const ApprovalPage = () => {
             </Col>
             <div className="mt-5 gap-3 flex justify-end">
               <Button
+                loading={loading}
                 htmlType="submit"
                 className="btn btn-gradient"
                 onClick={() => setRequest("status", "APPROVED")}
@@ -174,6 +174,7 @@ export const ApprovalPage = () => {
                 Approve
               </Button>
               <Button
+                loading={loading}
                 htmlType="submit"
                 className="btn bg-red-600"
                 onClick={() => setRequest("status", "DECLINED")}
@@ -195,13 +196,13 @@ export const ApprovalPage = () => {
           className={`flex flex-col gap-4 ml-[10%] pl-[20px] pr-[10%] mt-[100px] max-md:ml-[0%] max-md:mt-[30px]`}
         >
           <Spin spinning={loading}>
-          <Card className="box-shadow">
-            <Table
-              columns={columns}
-              className=""
-              dataSource={dataSource?.filter((x) => x.status === "PENDING")}
-              scroll={{ x: 200 }}
-            />
+            <Card className="box-shadow">
+              <Table
+                columns={columns}
+                className=""
+                dataSource={dataSource?.filter((x) => x.status === "PENDING")}
+                scroll={{ x: 200 }}
+              />
             </Card>
           </Spin>
         </div>

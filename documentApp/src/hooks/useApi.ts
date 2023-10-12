@@ -1,23 +1,19 @@
 import { useCallback, useState } from "react";
-import {
-  useMutation,
-  //useQueryClient,
-  MutationFunction,
-} from "@tanstack/react-query";
+import { useMutation, MutationFunction } from "@tanstack/react-query";
 import { Notify } from "../components/notification";
 import { APIResponse, LoginResponse } from "../model";
 
-export const useApi = (page: "login" | "users" | "documents" | "roles") => {
+export const useApi = (
+  page: "login" | "users" | "documents" | "roles" | "department"
+) => {
   const [payload, setPayload] = useState({} as any);
   const [ID, setID] = useState(0);
   const [response, setResponse] = useState([] as any);
+  const [response2, setResponse2] = useState([] as any);
   const [dataSource, setDataResponse] = useState([] as any);
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const domain = "https://dms-app-z844.onrender.com/api/v1/";
-  //const queryClient = useQueryClient();
-  //http://80.88.8.239:5042/api/v1/
-
   const createPost: MutationFunction<any, any> = async (request) => {
     let token: string | undefined = undefined;
     if (localStorage.getItem("***")) {
@@ -45,6 +41,7 @@ export const useApi = (page: "login" | "users" | "documents" | "roles") => {
   const mutation = useMutation(createPost, {
     onSuccess: (data: APIResponse) => {
       //queryClient.invalidateQueries("posts");
+      console.log("dddd");
       if (data.responseCode === "0") {
         const result = data.data;
         if (page === "login") {
@@ -79,6 +76,8 @@ export const useApi = (page: "login" | "users" | "documents" | "roles") => {
           setDataResponse(result?.roles);
         } else if (page === "documents") {
           setDataResponse(result?.documents);
+        } else if (page === "department") {
+          setDataResponse(result?.departments);
         }
       } else if (data.responseCode === "97") {
         localStorage.clear();
@@ -106,6 +105,9 @@ export const useApi = (page: "login" | "users" | "documents" | "roles") => {
         } else if (page === "documents") {
           postData(undefined, "documents", { page: 0, size: 100 });
         }
+        else if (page === "department") {
+          postData(undefined, "dept", { page: 0, size: 100 });
+        }
       } else if (data.responseCode === "97") {
         localStorage.clear();
         setShowModal(false);
@@ -125,7 +127,11 @@ export const useApi = (page: "login" | "users" | "documents" | "roles") => {
       //queryClient.invalidateQueries("posts");
       if (data.responseCode === "0") {
         const result = data.data;
-        setResponse(result);
+        if(result.departments){
+          setResponse2(result)
+        }else{
+          setResponse(result);
+        }
       } else if (data.responseCode === "97") {
         localStorage.clear();
         window.location.href = "/";
@@ -179,7 +185,12 @@ export const useApi = (page: "login" | "users" | "documents" | "roles") => {
     if (key === "roleId") {
       const roleName = response?.roles?.filter((x) => x.id === value)[0]!.name;
       setPayload({ ...payload, [key]: value, roleName });
-    } else {
+    }
+    else if(key === "departmentId"){
+      const departmentName = response2?.departments?.filter((x) => x.id === value)[0]!.name;
+      setPayload({ ...payload, [key]: value, departmentName });
+    }
+     else {
       setPayload({ ...payload, [key]: value });
     }
   };
@@ -190,6 +201,7 @@ export const useApi = (page: "login" | "users" | "documents" | "roles") => {
     payload,
     mutation,
     response,
+    response2,
     loading,
     dataSource,
     postOptionData,

@@ -8,7 +8,7 @@ export const Notify = (
   return notification.open({
     message: isSuccess ? "Success" : "Error",
     description: message,
-    duration: isSuccess ? 10 : 100,
+    duration: isSuccess ? 10 : 10,
     icon: !isSuccess ? (
       <WarningOutlined style={{ color: "red" }} />
     ) : (

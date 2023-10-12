@@ -45,7 +45,6 @@ export const DocumentsPage = () => {
   const [isNew, setIsNew] = useState(true);
 
   const state = useContext(CompressContext);
-
   const props: UploadProps = {
     name: "file",
     multiple: false,
@@ -111,8 +110,8 @@ export const DocumentsPage = () => {
             status.toLowerCase() === "pending"
               ? "orange"
               : status.toLowerCase() === "approved"
-              ? "green"
-              : "red"
+                ? "green"
+                : "red"
           }
           key={status}
         >
@@ -221,10 +220,10 @@ export const DocumentsPage = () => {
                         <option value={"0"}>{"Choose a document type"}</option>
                         {Array.isArray(response?.documentType)
                           ? response?.documentType.map((x) => (
-                              <option key={x.id} value={x.id}>
-                                {x.type}
-                              </option>
-                            ))
+                            <option key={x.id} value={x.id}>
+                              {x.type}
+                            </option>
+                          ))
                           : ""}
                       </select>
                       <div className="pointer-events-none absolute right-0 top-0 bottom-0 flex items-center px-2 text-gray-700 border-l">
@@ -257,6 +256,7 @@ export const DocumentsPage = () => {
               <Col md={24} className="mt-[50px]">
                 {" "}
                 <Button
+                  loading={loading}
                   htmlType="submit"
                   className="float-right mr-[15%] btn btn-gradient"
                 >
@@ -306,14 +306,14 @@ export const DocumentsPage = () => {
         <div
           className={`flex flex-col gap-4 ml-[10%] pl-[20px] pr-[10%] mt-[100px] max-md:ml-[0%] max-md:mt-[30px]`}
         >
-          {state.permissions?.includes("CREATE_DOCUMENT") ? (
+          {state.permissions?.includes("UPLOAD_DOCUMENT") ? (
             <Button
               onClick={() => {
                 setIsNew(true);
                 setShowModal(true);
                 setPayload({});
               }}
-              className="w-[15%] float-right btn btn-gradient"
+              className="w-[17%] float-right btn btn-gradient"
             >
               Add New Document
             </Button>
@@ -323,12 +323,12 @@ export const DocumentsPage = () => {
 
           <Spin spinning={loading}>
             <Card className="box-shadow">
-            <Table
-              columns={columns}
-              className=""
-              dataSource={dataSource}
-              scroll={{ x: 200 }}
-            />
+              <Table
+                columns={columns}
+                className=""
+                dataSource={dataSource}
+                scroll={{ x: 200 }}
+              />
             </Card>
           </Spin>
         </div>
