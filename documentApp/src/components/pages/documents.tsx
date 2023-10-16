@@ -36,6 +36,7 @@ export const DocumentsPage = () => {
     payload,
     setPayload,
     setID,
+    filterDocument,
   } = useApi("documents");
   useMemo(() => {
     postData(undefined, "documents", { page: 0, size: 100 });
@@ -81,6 +82,19 @@ export const DocumentsPage = () => {
     },
     [setID, setPayload, setShowModal]
   );
+  const downloadImage = (imageUrl: string) => {
+    fetch(imageUrl)
+      .then((response) => response.blob())
+      .then((blob) => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "downloaded-image.jpg"; // Specify the desired file name
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+      });
+  };
   const columns: ColumnsType<any> = [
     {
       title: "File Name",
@@ -110,8 +124,8 @@ export const DocumentsPage = () => {
             status.toLowerCase() === "pending"
               ? "orange"
               : status.toLowerCase() === "approved"
-                ? "green"
-                : "red"
+              ? "green"
+              : "red"
           }
           key={status}
         >
@@ -121,14 +135,23 @@ export const DocumentsPage = () => {
     },
     {
       title: "Action",
-      key: 'operation',
+      key: "operation",
       render: (record: any) => (
-        <Button
-          onClick={() => setDetails(record)}
-          className="bg-[#b90d0d] text-white"
-        >
-          View File
-        </Button>
+        <div className="flex gap-3">
+          {" "}
+          <Button
+            onClick={() => setDetails(record)}
+            className="bg-[#b90d0d] text-white"
+          >
+            View File
+          </Button>{" "}
+          <Button
+            onClick={() => downloadImage(record.url)}
+            className="bg-[#b90d0d] text-white"
+          >
+            Download File
+          </Button>
+        </div>
       ),
     },
   ];
@@ -220,10 +243,10 @@ export const DocumentsPage = () => {
                         <option value={"0"}>{"Choose a document type"}</option>
                         {Array.isArray(response?.documentType)
                           ? response?.documentType.map((x) => (
-                            <option key={x.id} value={x.id}>
-                              {x.type}
-                            </option>
-                          ))
+                              <option key={x.id} value={x.id}>
+                                {x.type}
+                              </option>
+                            ))
                           : ""}
                       </select>
                       <div className="pointer-events-none absolute right-0 top-0 bottom-0 flex items-center px-2 text-gray-700 border-l">
@@ -302,9 +325,8 @@ export const DocumentsPage = () => {
           description="All documents uploaded by user"
           title="Documents"
         />
-
         <div
-          className={`flex flex-col gap-4 ml-[10%] pl-[20px] pr-[10%] mt-[100px] max-md:ml-[0%] max-md:mt-[30px]`}
+          className={`flex flex-col gap-4 ml-[10%] pl-[20px] pr-[10%] mt-[40px] max-md:ml-[0%] max-md:mt-[30px]`}
         >
           {state.permissions?.includes("UPLOAD_DOCUMENT") ? (
             <Button
@@ -323,6 +345,11 @@ export const DocumentsPage = () => {
 
           <Spin spinning={loading}>
             <Card className="box-shadow">
+              <Input
+                onChange={(e) => filterDocument(e.target.value)}
+                className="bg-white text-black w-[20%] mb-4"
+                placeholder="Filter by document name"
+              />
               <Table
                 columns={columns}
                 className=""

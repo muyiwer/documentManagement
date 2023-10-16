@@ -1,8 +1,8 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useMutation, MutationFunction } from "@tanstack/react-query";
 import { Notify } from "../components/notification";
 import { APIResponse, LoginResponse } from "../model";
-
+import { TeamOutlined } from "@ant-design/icons";
 export const useApi = (
   page: "login" | "users" | "documents" | "roles" | "department"
 ) => {
@@ -11,6 +11,8 @@ export const useApi = (
   const [response, setResponse] = useState([] as any);
   const [response2, setResponse2] = useState([] as any);
   const [dataSource, setDataResponse] = useState([] as any);
+  const [originalDataSource, setOriginalDataResponse] = useState([] as any);
+  const [user, setuser] = useState({} as any);
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const domain = "https://dms-app-z844.onrender.com/api/v1/";
@@ -72,12 +74,16 @@ export const useApi = (
           }
         } else if (page === "users") {
           setDataResponse(result?.users);
+          setOriginalDataResponse(result?.users)
         } else if (page === "roles") {
           setDataResponse(result?.roles);
+          setOriginalDataResponse(result?.roles)
         } else if (page === "documents") {
           setDataResponse(result?.documents);
+          setOriginalDataResponse(result?.documents)
         } else if (page === "department") {
           setDataResponse(result?.departments);
+          setOriginalDataResponse(result?.departments)
         }
       } else if (data.responseCode === "97") {
         localStorage.clear();
@@ -195,6 +201,22 @@ export const useApi = (
     }
   };
 
+
+  useEffect(() => {
+    try {
+      const user = JSON.parse(localStorage.getItem("***") as string);
+      setuser(user);
+    } catch (_error) {
+      console.log("none");
+    }
+  }, []);
+
+  const filterDocument = (value: string) => {
+    let data = originalDataSource
+    data = data.filter(x=> x.name.includes(value))
+    setDataResponse(data)
+  }
+
   return {
     postData,
     setRequest,
@@ -210,7 +232,11 @@ export const useApi = (
     showModal,
     setShowModal,
     setPayload,
+    originalDataSource,
     ID,
     setID,
+    user,
+    TeamOutlined,
+    filterDocument
   };
 };

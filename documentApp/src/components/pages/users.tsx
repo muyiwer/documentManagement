@@ -128,6 +128,7 @@ console.log(payload);
 
   return (
     <section className="grid">
+      
       <Modal
         open={showModal}
         footer={null}
@@ -345,6 +346,7 @@ console.log(payload);
         </Form>
       </Modal>
       <AppHeader />
+     
       <main>
         <AppTitle description="All users" title="Users" />
         <div
