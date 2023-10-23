@@ -19,7 +19,7 @@ export const Auth = () => {
             />
             <div className="flex mt-1 ml-2">
               {" "}
-              <span className="text-[rgb(207,46,46)] font-extrabold text-[11px] -mb-[10px] text-center">Document Approval System</span>{" "}
+              <span className="text-[rgb(207,46,46)] font-extrabold text-[15px] -mb-[10px] text-center">Document Approval System</span>{" "}
             </div>
           </div>
         </div>
