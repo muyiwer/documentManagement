@@ -132,7 +132,7 @@ export const Department = () => {
       </Modal>
       <AppHeader />
       <main>
-        <AppTitle description="update user depatment" title="Department" />
+        <AppTitle description="update user department" title="Department" />
         <div
           className={`flex flex-col gap-4 ml-[10%] pl-[20px] pr-[10%] mt-[100px] max-md:ml-[0%] max-md:mt-[30px]`}
         >
